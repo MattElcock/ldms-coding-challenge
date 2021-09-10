@@ -1,24 +1,39 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import "./app.css";
+
+import Note, { NoteGroup } from "./note";
 
 function App() {
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/notes")
+      .then((result) => result.json())
+      .then((data) => {
+        if (data.length) {
+          setNotes(data);
+        }
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div>
+      <header>
+        <h1>A lovely board of notes</h1>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Use this space to view some lovely notes, or add a new one if you're
+          feeling wild.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <main>
+        {notes.length > 0 && (
+          <NoteGroup>
+            {notes.map((note) => (
+              <Note {...note} />
+            ))}
+          </NoteGroup>
+        )}
+      </main>
     </div>
   );
 }
