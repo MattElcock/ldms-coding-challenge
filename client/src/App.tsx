@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./app.css";
 
-import Note, { NoteGroup } from "./note";
+import { NoteGroup } from "./note";
 
 function App() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/notes")
+    const apiURL = "http://localhost:3000/api/notes";
+
+    fetch(apiURL)
       .then((result) => result.json())
       .then((data) => {
         if (data.length) {
