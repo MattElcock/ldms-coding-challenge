@@ -32,7 +32,7 @@ const Metadata = styled.div`
   }
 `;
 
-export const NoteGroup = styled.div`
+const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
 
@@ -65,5 +65,17 @@ const Note = ({ id, createdAt, user, note }: NoteProps) => {
     </StyledPaper>
   );
 };
+
+type NoteGroupProps = {
+  notes: NoteProps[];
+};
+
+export const NoteGroup = ({ notes }: NoteGroupProps) => (
+  <Container>
+    {notes.map((note) => (
+      <Note {...note} />
+    ))}
+  </Container>
+);
 
 export default Note;

@@ -25,15 +25,7 @@ function App() {
           feeling wild.
         </p>
       </header>
-      <main>
-        {notes.length > 0 && (
-          <NoteGroup>
-            {notes.map((note) => (
-              <Note {...note} />
-            ))}
-          </NoteGroup>
-        )}
-      </main>
+      <main>{notes.length > 0 && <NoteGroup notes={notes} />}</main>
     </div>
   );
 }
