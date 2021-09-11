@@ -6,8 +6,8 @@ import { Paper } from "@material-ui/core";
 const StyledPaper = styled(Paper)`
   display: flex;
   flex-direction: column;
-  width: 14.5em;
-  height: 14.5em;
+  width: 16em;
+  height: 16em;
   background-color: yellow !important;
   border-radius: 0;
   padding: 0.5em;
@@ -19,7 +19,7 @@ const StyledPaper = styled(Paper)`
 const Content = styled.p`
   overflow: auto;
   word-wrap: break-word;
-  font-size: 0.8em;
+  font-size: 1em;
   margin-bottom: 1em;
 `;
 
@@ -28,7 +28,7 @@ const Metadata = styled.div`
 
   p {
     margin: 0;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 `;
 
@@ -53,7 +53,7 @@ type NoteProps = {
 };
 
 const Note = ({ id, createdAt, user, note }: NoteProps) => {
-  const datePosted = new Date(createdAt).toDateString();
+  const datePosted = new Date(createdAt).toLocaleDateString();
 
   return (
     <StyledPaper elevation={3} data-test={`note-${id}`}>

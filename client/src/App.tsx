@@ -2,21 +2,33 @@ import React, { useEffect, useState } from "react";
 import "./app.css";
 
 import { NoteGroup } from "./note";
+import DateFilter from "./dateFilter";
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [timeFilter, setTimeFilter] = useState("sixMonths");
+
+  const handleTimeFilterChange = (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => setTimeFilter(event.target.value as string);
 
   useEffect(() => {
-    const apiURL = "http://localhost:3000/api/notes";
+    const url = new URL("http://localhost:3000/api/notes");
 
-    fetch(apiURL)
+    if (timeFilter === "sixMonths") {
+      const date = new Date();
+      date.setMonth(date.getMonth() - 6);
+      url.searchParams.append("from", date.toISOString().split("T")[0]);
+    }
+
+    fetch(url.toString())
       .then((result) => result.json())
       .then((data) => {
         if (data.length) {
           setNotes(data);
         }
       });
-  }, []);
+  }, [timeFilter]);
 
   return (
     <div>
@@ -27,7 +39,10 @@ function App() {
           feeling wild.
         </p>
       </header>
-      <main>{notes.length > 0 && <NoteGroup notes={notes} />}</main>
+      <main>
+        <DateFilter onChange={handleTimeFilterChange} currentVal={timeFilter} />
+        {notes.length > 0 && <NoteGroup notes={notes} />}
+      </main>
     </div>
   );
 }
