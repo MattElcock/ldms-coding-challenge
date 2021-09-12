@@ -15,8 +15,8 @@ const Pin = styled.span`
 const StyledPaper = styled(Paper)`
   display: flex;
   flex-direction: column;
-  width: 16em;
-  height: 16em;
+  width: 16.9em;
+  height: 16.9em;
   background-color: #feff9c !important;
   border-radius: 0;
   padding: 0.5em;
