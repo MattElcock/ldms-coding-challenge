@@ -60,7 +60,7 @@ const Board = styled.div`
   }
 `;
 
-type NoteProps = {
+export type NoteProps = {
   id: number;
   createdAt: string;
   user: string;
@@ -71,7 +71,7 @@ const Note = ({ id, createdAt, user, note }: NoteProps) => {
   const datePosted = new Date(createdAt).toLocaleDateString();
 
   return (
-    <StyledPaper square elevation={3} data-test={`note-${id}`}>
+    <StyledPaper square elevation={3} data-testid="note">
       <Pin />
       <Content>{note}</Content>
       <Metadata>
@@ -82,14 +82,14 @@ const Note = ({ id, createdAt, user, note }: NoteProps) => {
   );
 };
 
-type NoteGroupProps = {
+export type NoteGroupProps = {
   notes: NoteProps[];
 };
 
 export const NoteGroup = ({ notes }: NoteGroupProps) => (
   <Board>
     {notes.map((note) => (
-      <Note {...note} />
+      <Note key={note.id} {...note} />
     ))}
   </Board>
 );
