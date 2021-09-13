@@ -2,7 +2,7 @@ import { render, fireEvent, within } from "@testing-library/react";
 
 import DateFilter from "./dateFilter";
 
-describe.only("Date filter", () => {
+describe("Date filter", () => {
   let currentValue: string;
   let onChange = jest.fn();
 

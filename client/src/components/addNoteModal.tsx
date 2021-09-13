@@ -104,6 +104,8 @@ const AddNoteModal = ({
             required
             inputRef={noteRef}
             label="Note text"
+            name="Note text"
+            id="Note text"
             multiline
             minRows={4}
             maxRows={4}
@@ -116,7 +118,10 @@ const AddNoteModal = ({
               "Your note must be no longer than 500 characters."
             }
           />
-          <CharacterLength hasError={noteLength > 500}>
+          <CharacterLength
+            data-testid="characterLength"
+            hasError={noteLength > 500}
+          >
             {noteLength}/500 characters
           </CharacterLength>
           <ButtonGroup>
