@@ -4,15 +4,19 @@
 
 Boot up the API
 
-`➜ cd api`
-`➜ npm install`
-`➜ npm start`
+```
+➜ cd api
+➜ npm install
+➜ npm test
+```
 
 Then, the frontend
 
-`➜ cd client`
-`➜ npm install`
-`➜ npm start`
+```
+➜ cd client
+➜ npm install
+➜ npm test
+```
 
 ## Tests
 
@@ -20,6 +24,8 @@ Unfortunately, I'm unfamiliar with how to mock the Fetch API. I had a look, invo
 
 You can run the tests I have written by using the following command:
 
-`➜ cd client`
-`➜ npm install` (If you haven't already)
-`➜ npm test`
+```
+➜ cd client
+➜ npm install (If you haven't already)
+➜ npm test
+```
