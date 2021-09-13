@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import "./App.css";
 
@@ -44,11 +44,11 @@ function App() {
     event: React.ChangeEvent<{ value: unknown }>
   ) => setTimeFilter(event.target.value as string);
 
-  const updateNotes = async () => {
+  const updateNotes = useCallback(async () => {
     const data = await getNotes(timeFilter);
 
     setNotes(data);
-  };
+  }, [timeFilter]);
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -60,7 +60,7 @@ function App() {
 
   useEffect(() => {
     updateNotes();
-  }, [timeFilter]);
+  }, [updateNotes]);
 
   return (
     <Container>
