@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./app.css";
+import "./App.css";
 
 import getNotes from "./utils/getNotes";
 
