@@ -22,9 +22,9 @@ type DateFilterProps = {
 const DateFilter = ({ onChange, currentVal }: DateFilterProps) => {
   return (
     <Container>
-      <label id="time-filter-select">Show results for:</label>
+      <label id="date-filter-select">Show results for:</label>
       <Select
-        labelId="time-filter-select"
+        labelId="date-filter-select"
         value={currentVal}
         onChange={onChange}
       >
