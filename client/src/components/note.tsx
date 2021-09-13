@@ -15,8 +15,8 @@ const Pin = styled.span`
 const StyledPaper = styled(Paper)`
   display: flex;
   flex-direction: column;
-  width: 16.9em;
-  height: 16.9em;
+  width: 17.3em;
+  height: 17.3em;
   background-color: #feff9c !important;
   border-radius: 0;
   padding: 0.5em;
@@ -49,6 +49,7 @@ const Board = styled.div`
   padding 1em;
   background-color: #ac795d;
   border: .65em solid #76513d;
+  box-shadow: 5px 10px 8px 5px #888888;
 
   ${StyledPaper} {
     margin-right: 1em;

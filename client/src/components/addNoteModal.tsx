@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
@@ -57,26 +57,47 @@ const CharacterLength = styled.p<{ hasError: boolean }>`
 type AddNoteModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  submitCallback: () => void;
 };
 
-const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
+const AddNoteModal = ({
+  isOpen,
+  onClose,
+  submitCallback,
+}: AddNoteModalProps) => {
   const [noteLength, setNoteLength] = useState<number>(0);
 
   const noteRef = useRef<HTMLTextAreaElement>(null);
   const classes = useStyles();
 
-  const handleSubmitForm = (event: React.SyntheticEvent) => {
+  const handleSubmitForm = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (noteRef.current) {
       const noteText = noteRef.current.value;
-      console.log(noteText);
+
+      const url = new URL("http://localhost:3000/api/notes");
+
+      const response = await fetch(url.toString(), {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ note: noteText }),
+      }).then((result) => result);
+
+      if (response.status === 201) {
+        submitCallback();
+        setNoteLength(0);
+        onClose();
+      }
     }
   };
 
   return (
     <Modal open={isOpen} onClose={onClose}>
       <Container className={classes.paper}>
-        <h2>Add a note</h2>
+        <h1>Add a note</h1>
         <p>Use the box below to add a note.</p>
         <Form onSubmit={handleSubmitForm}>
           <TextField
